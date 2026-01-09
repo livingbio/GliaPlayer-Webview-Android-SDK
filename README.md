@@ -5,7 +5,7 @@ A library for loading GliaPlayer.
 Import the library:
 
 ```kotlin
-implementation("com.gliacloud:gliaplayer:1.0.0-beta01")
+implementation("com.gliacloud:gliaplayer:1.0.0-beta02")
 ```
 
 In `settings.gradle`, make sure you select the `read:packages` scope and for the access token:
@@ -38,13 +38,14 @@ dependencyResolutionManagement {
 }
 ```
 
-To load an GliaPlayer, use the `GliaPlayer` composable:
+To load an GliaPlayer, use the `GliaPlayer` composable with the `SLOT_KEY`:
 
 ```kotlin
 GliaPlayer(
     modifier = Modifier
         .width(480.dp)
-        .height(320.dp)
+        .height(320.dp),
+    slot_key="{SLOT_KEY}"
 )
 ```
 
