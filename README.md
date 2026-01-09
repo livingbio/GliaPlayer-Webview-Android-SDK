@@ -8,7 +8,7 @@ Import the library:
 implementation("com.gliacloud:gliaplayer:1.0.0-beta01")
 ```
 
-In `settings.gradle`:
+In `settings.gradle`, make sure you select the `read:packages` scope and for the access token:
 
 ```kotlin
 pluginManagement {
