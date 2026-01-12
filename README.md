@@ -5,7 +5,7 @@ A library for loading GliaPlayer.
 Import the library:
 
 ```kotlin
-implementation("com.gliacloud:gliaplayer:1.0.0-beta02")
+implementation("com.gliacloud:gliaplayer:1.0.0-beta03")
 ```
 
 In `settings.gradle`, make sure you select the `read:packages` scope and for the access token:
@@ -38,15 +38,20 @@ dependencyResolutionManagement {
 }
 ```
 
+Please setup the Google Mobile Ads SDK:
+https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start#kotlin_2
+
+
 To load an GliaPlayer, use the `GliaPlayer` composable with the `SLOT_KEY`:
 
 ```kotlin
-GliaPlayer(
-    modifier = Modifier
-        .width(480.dp)
-        .height(320.dp),
-    slot_key="{SLOT_KEY}"
-)
+import com.gliacloud.gliaplayer.GliaPlayer
+
+GliaPlayer(context).apply {
+    initGliaPlayer(slot_key = "{SLOT_KEY}")
+    // Register with Mobile Ads SDK for ad integration
+    MobileAds.registerWebView(this)
+}
 ```
 
 ## License
