@@ -1,5 +1,13 @@
 A library for loading GliaPlayer.
 
+## Requirements
+
+For Android Native Developers:
+- Android Min SDK version: `23`
+
+For React Native Developers:
+- Min React Native Version: `0.74`
+
 ## Quick Start
 
 Import the library:
