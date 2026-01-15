@@ -5,7 +5,7 @@ A library for loading GliaPlayer.
 Import the library:
 
 ```kotlin
-implementation("com.gliacloud:gliaplayer:1.0.0-beta04")
+implementation("com.gliacloud:gliaplayer:1.0.0-beta05")
 ```
 
 In `settings.gradle`, make sure you select the `read:packages` scope and for the access token:
