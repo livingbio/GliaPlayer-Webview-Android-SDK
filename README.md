@@ -2,15 +2,15 @@ A library for loading GliaPlayer.
 
 ## Requirements
 
-For Android Native Developers:
+### Platform: Android Native 
 - Android Min SDK version: `23`
 
-For React Native Developers:
+### Platform: React Native
 - Min React Native Version: `0.74`
 
 ## Quick Start
 
-Import the library:
+### 1. Import the library
 
 ```kotlin
 implementation("com.gliacloud:gliaplayer:1.0.0-beta05")
@@ -46,9 +46,12 @@ dependencyResolutionManagement {
 }
 ```
 
-Please setup the Google Mobile Ads SDK:
+### 2. Setup the Google Mobile Ads SDK
+
 https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start#kotlin_2
 
+
+### 3. Load GliaPlayer Ads View
 
 To load an GliaPlayer, use the `GliaPlayer` composable with the `SLOT_KEY`:
 
