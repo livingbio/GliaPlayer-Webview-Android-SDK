@@ -8,6 +8,10 @@ A library for loading GliaPlayer.
 ### Platform: React Native
 - Min React Native Version: `0.74`
 
+## Integration with Flutter
+
+[Documentation](flutter-integration.md)
+
 ## Quick Start
 
 ### 1. Import the library
