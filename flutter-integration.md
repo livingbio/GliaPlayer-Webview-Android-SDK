@@ -30,7 +30,7 @@ The GliaPlayer SDK is hosted on GitHub Packages and requires authentication to d
 
 ### Create `gradle.properties`
 
-Add your GitHub credentials to `~/.gradle/gradle.properties`:
+Add your GitHub credentials to `android/gradle.properties`:
 
 ```properties
 GITHUB_USER_ID=your-github-email@example.com
