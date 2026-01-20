@@ -37,7 +37,9 @@ GITHUB_USER_ID=your-github-email@example.com
 PERSONAL_ACCESS_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-> **Note**: This file is located in the `.gradle` folder within the user's home directory and will not be committed to the git repository.
+>[!NOTE]
+>
+>This file is located in the `.gradle` folder within the user's home directory and will not be committed to the git repository.
 
 ### Obtain Personal Access Token
 
@@ -77,7 +79,10 @@ allprojects {
 
 ```
 
-> **Important**: `content { includeGroup("com.gliacloud") }` is a critical setting. It restricts this repository to be used only for downloading the GliaPlayer SDK, preventing other dependencies from attempting to download from GitHub Packages, which would cause authentication errors.
+>[!IMPORTANT]
+>
+>`content { includeGroup("com.gliacloud") }` is a critical setting. It restricts this repository to be used only for downloading the GliaPlayer SDK, preventing other dependencies from attempting to download from GitHub Packages, which would cause authentication errors.
+
 
 ---
 
@@ -318,8 +323,9 @@ Widget build(BuildContext context) {
 
 ### Problem 1: 401 Unauthorized Error
 
-**Error Message:**
-Could not GET '.../gliaplayer-1.0.0-beta05.pom'.
+>[!ERROR]
+>
+>Could not GET '.../gliaplayer-1.0.0-beta05.pom'.
 Received status code 401 from server: Unauthorized
 
 **Cause:** GitHub credentials are incorrectly configured.
@@ -335,8 +341,9 @@ Received status code 401 from server: Unauthorized
 
 ### Problem 2: Other Dependencies Failed to Download
 
-**Error Message:**
-Could not resolve io.flutter:flutter_embedding_debug:xxx
+>[!ERROR]
+>
+>Could not resolve io.flutter:flutter_embedding_debug:xxx
 Could not HEAD '[...github.com/.../flutter_embedding_debug-xxx.pom](https://www.google.com/search?q=https://...github.com/.../flutter_embedding_debug-xxx.pom)'.
 Received status code 401 from server: Unauthorized
 
@@ -360,8 +367,9 @@ maven {
 
 ### Problem 3: Errors Caused by Using `dependencyResolutionManagement`
 
-**Error Message:**
-Same as Problem 2. This occurs because `repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)` in `settings.gradle.kts` forces all dependencies to be downloaded from the repositories defined in settings.
+>[!ERROR]
+>
+>Same as Problem 2. This occurs because `repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)` in `settings.gradle.kts` forces all dependencies to be downloaded from the repositories defined in settings.
 
 **Solution:**
 Do not use `dependencyResolutionManagement` in `settings.gradle.kts` to configure the GitHub Packages repository. Instead, use `allprojects.repositories` in `build.gradle.kts` combined with the `content` filter.
@@ -386,8 +394,9 @@ if (!Platform.isAndroid) {
 
 ### Problem 5: MobileAds Not Initialized
 
-**Error Message:**
-MobileAds.registerWebView() called before MobileAds.initialize()
+>[!ERROR]
+>
+>MobileAds.registerWebView() called before MobileAds.initialize()
 
 **Solution:**
 Ensure that MobileAds is initialized in `main.dart`:
