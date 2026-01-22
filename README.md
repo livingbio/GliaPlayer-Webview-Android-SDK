@@ -32,6 +32,10 @@ pluginManagement {
                 username = System.getenv("GITHUB_USER_ID") ?: ""
                 password = System.getenv("PERSONAL_ACCESS_TOKEN") ?: ""
             }
+            content {
+                // Only use this repository for GliaPlayer SDK
+                includeGroup("com.gliacloud")
+            }
         }
     }
 }
@@ -55,18 +59,28 @@ dependencyResolutionManagement {
 https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start#kotlin_2
 
 
-### 3. Load GliaPlayer Ads View
+### 3. Usage
 
-To load an GliaPlayer, use the `GliaPlayer` composable with the `SLOT_KEY`:
+1. To load an GliaPlayer, use the `GliaPlayer` composable with the `SLOT_KEY`:
 
 ```kotlin
 import com.gliacloud.gliaplayer.GliaPlayer
 
-GliaPlayer(context).apply {
+val gliaPlayer = GliaPlayer(context).apply {
     initGliaPlayer(slot_key = "{SLOT_KEY}")
     // Register with Mobile Ads SDK for ad integration
     MobileAds.registerWebView(this)
 }
+```
+
+2. Re-start the video playback of the `GliaPlayer`.
+```kotlin
+gliaPlayer.show()
+```
+
+3. To stop the video playback.
+```kotlin
+gliaPlayer.hide()
 ```
 
 ## License
