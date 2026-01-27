@@ -17,7 +17,7 @@ A library for loading GliaPlayer.
 ### 1. Import the library
 
 ```kotlin
-implementation("com.gliacloud:gliaplayer:1.0.0-beta05")
+implementation("com.gliacloud:gliaplayer:1.0.0-beta07")
 ```
 
 In `settings.gradle`, make sure you select the `read:packages` scope and for the access token:
@@ -73,14 +73,44 @@ val gliaPlayer = GliaPlayer(context).apply {
 }
 ```
 
-2. Re-start the video playback of the `GliaPlayer`.
+2. Resume the video playback of the `GliaPlayer`.
 ```kotlin
-gliaPlayer.show()
+gliaPlayer.resume()
 ```
 
-3. To stop the video playback.
+3. To pause the video playback.
 ```kotlin
-gliaPlayer.hide()
+gliaPlayer.pause()
+```
+
+4. To automatically `resume()`/`pause()` video playback depending on the visibility state of the View:
+In `MainActivity.kt`
+```kotlin
+import com.gliacloud.gliaplayer.GliaPlayer
+import com.gliacloud.gliaplayer.PlayerVisibilityTracker
+
+val gliaPlayer = GliaPlayer(context).apply {
+    initGliaPlayer(slot_key = "{SLOT_KEY}")
+    // Register with Mobile Ads SDK for ad integration
+    MobileAds.registerWebView(this)
+}
+
+// init PlayerVisibilityTracker()
+private val = PlayerVisibilityTracker(gliaPlayer)
+visibilityTracker.startTracking()
+
+override fun onPause() {
+    super.onPause()
+    visibilityTracker?.stopTracking()
+    gliaPlayer?.onPause()
+}
+
+override fun onResume() {
+    super.onResume()
+    gliaPlayer?.onResume()
+    visibilityTracker?.startTracking()
+}
+
 ```
 
 ## License
