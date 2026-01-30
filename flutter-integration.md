@@ -4,15 +4,15 @@ This document explains how to integrate the GliaPlayer Android SDK, a WebView-ba
 
 ## Table of Contents
 
-* [Requirements](https://www.google.com/search?q=%23requirements)
-* [Step 1: Set up GitHub Credentials](https://www.google.com/search?q=%23step-1-set-up-github-credentials)
-* [Step 2: Configure Gradle Repository](https://www.google.com/search?q=%23step-2-configure-gradle-repository)
-* [Step 3: Add SDK Dependency](https://www.google.com/search?q=%23step-3-add-sdk-dependency)
-* [Step 4: Create Android Platform View](https://www.google.com/search?q=%23step-4-create-android-platform-view)
-* [Step 5: Register Platform View](https://www.google.com/search?q=%23step-5-register-platform-view)
-* [Step 6: Create Flutter Widget](https://www.google.com/search?q=%23step-6-create-flutter-widget)
-* [Step 7: UI Integration](https://www.google.com/search?q=%23step-7-ui-integration)
-* [FAQ & Troubleshooting](https://www.google.com/search?q=%23faq--troubleshooting)
+* [Requirements](%23requirements)
+* [Step 1: Set up GitHub Credentials](%23step-1-set-up-github-credentials)
+* [Step 2: Configure Gradle Repository](%23step-2-configure-gradle-repository)
+* [Step 3: Add SDK Dependency](%23step-3-add-sdk-dependency)
+* [Step 4: Create Android Platform View](%23step-4-create-android-platform-view)
+* [Step 5: Register Platform View](%23step-5-register-platform-view)
+* [Step 6: Create Flutter Widget](%23step-6-create-flutter-widget)
+* [Step 7: UI Integration](%23step-7-ui-integration)
+* [FAQ & Troubleshooting](%23faq--troubleshooting)
 
 ---
 
