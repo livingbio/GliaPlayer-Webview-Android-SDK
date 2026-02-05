@@ -1,65 +1,106 @@
-A library for loading GliaPlayer.
+This document explains how to integrate the GliaPlayer Android SDK, a WebView-based video ad player, into an Android project.
 
-## Requirements
+## Before you begin
 
-### Platform: Android Native 
-- Android Min SDK version: `23`
+To prepare your app, complete the steps in the following sections.
 
-### Platform: React Native
-- Min React Native Version: `0.74`
+### App prerequisites
+- Make sure that your app's build file uses the following values:
+    - Minimum SDK version of `23` or higher
+    - Compile SDK version of `35` or higher
+- (Optional) For React Native:
+    - React Native version of `0.74` or higher
+- (Optional) Integration with Flutter
+    - [Flutter Plugin](https://pub.dev/packages/gliaplayer)
 
-## Integration with Flutter
 
-[Documentation](flutter-integration.md)
+## Configure your app
 
-## Quick Start
-
-### 1. Import the library
-
-```kotlin
-implementation("com.gliacloud:gliaplayer:1.0.0-beta07")
-```
-
-In `settings.gradle`, make sure you select the `read:packages` scope and for the access token:
+1. In your Gradle settings file, include the [Google's Maven repository](https://maven.google.com/web/index.html), [Maven central repository](https://search.maven.org/artifact) and [Maven GitHub Packages](https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages). 
+Make sure you have the `read:packages` scope and for the access token:
 
 ```kotlin
 pluginManagement {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/livingbio/GliaPlayer-Webview-Android-SDK")
-            credentials {
-                username = System.getenv("GITHUB_USER_ID") ?: ""
-                password = System.getenv("PERSONAL_ACCESS_TOKEN") ?: ""
-            }
-            content {
-                // Only use this repository for GliaPlayer SDK
-                includeGroup("com.gliacloud")
-            }
+  repositories {
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/livingbio/GliaPlayer-Webview-Android-SDK")
+        credentials {
+            username = System.getenv("GITHUB_USER_ID") ?: ""
+            password = System.getenv("PERSONAL_ACCESS_TOKEN") ?: ""
+        }
+        content {
+            // Only use this repository for GliaPlayer SDK
+            includeGroup("com.gliacloud")
         }
     }
+  }
 }
 
 dependencyResolutionManagement {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/livingbio/GliaPlayer-Webview-Android-SDK")
-            credentials {
-                username = System.getenv("GITHUB_USER_ID") ?: ""
-                password = System.getenv("PERSONAL_ACCESS_TOKEN") ?: ""
-            }
+  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  repositories {
+    google()
+    mavenCentral()
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/livingbio/GliaPlayer-Webview-Android-SDK")
+        credentials {
+            username = System.getenv("GITHUB_USER_ID") ?: ""
+            password = System.getenv("PERSONAL_ACCESS_TOKEN") ?: ""
         }
     }
+  }
+}
+
+rootProject.name = "My Application"
+include(":app")
+```
+
+2. Add the dependencies for Google Mobile Ads SDK to your app-level build file:
+
+```kotlin
+implementation("com.gliacloud:gliaplayer:1.0.0-beta08")
+implementation("com.google.android.gms:play-services-ads:24.9.0")
+```
+
+3. Click **Sync Now**. For details on syncing, see [Sync projects with Gradle files](https://developers.android.com/build#sync-files).
+
+4. Bypass `APPLICATION_ID` check for web view APIs for ads, in your app's `AndroidManifest.xml` file. To do so, add a <meta-data> tag with `android:name="com.google.android.gms.ads.INTEGRATION_MANAGER"`. For `android:value`, insert `webview`, surrounded by quotation marks.
+
+```xml
+<manifest>
+  <application>
+    <!-- Bypass APPLICATION_ID check for web view APIs for ads -->
+    <meta-data
+        android:name="com.google.android.gms.ads.INTEGRATION_MANAGER"
+        android:value="webview"/>
+  </application>
+</manifest>
+```
+
+## Initialize the Google Mobile Ads SDK
+
+Before loading ads, initialize Google Mobile Ads SDK by calling [`MobileAds.initialize()`](https://developers.google.com/ad-manager/mobile-ads-sdk/android/reference/com/google/android/gms/ads/MobileAds#initialize(android.content.Context,%20com.google.android.gms.ads.initialization.OnInitializationCompleteListener)).
+
+This method initializes the SDK and calls a completion listener once both Google Mobile Ads SDK and adapter initializations have completed, or after a 30-second timeout. This needs to be done only once, ideally at app launch.
+
+Here's an example of how to call the initialize() method on a background thread within an Activity:
+
+```kotlin
+CoroutineScope(Dispatchers.IO).launch {
+  // Initialize the Google Mobile Ads SDK on a background thread.
+  MobileAds.initialize(this@MyActivity) {}
 }
 ```
 
-### 2. Setup the Google Mobile Ads SDK
-
-https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start#kotlin_2
+For more detailed setups for the Google Mobile Ads SDK, please check the [official documents](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start#kotlin_2).
 
 
-### 3. Usage
+## GliaPlayer Ad Unit
 
 1. To load an GliaPlayer, use the `GliaPlayer` composable with the `SLOT_KEY`:
 
