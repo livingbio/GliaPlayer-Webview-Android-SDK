@@ -2,12 +2,12 @@ This document explains how to integrate the GliaPlayer Android SDK, a WebView-ba
 ---
 
 ## Scenarios
+| | |
+|-------------------------|-------------------------|
+|<img src="imgs/insert_ads.jpg" alt="insert_ads" width="200"/> |  <img src="imgs/insert_video.jpg" alt="insert_video" width="200"/> |
+| <img src="imgs/floating_ads.jpg" alt="floating_ads" width="200"/>| <img src="imgs/floating_video.jpg" alt="floating_video" width="200"/>  |  
 
-<img src="imgs/insert_ads.jpg" alt="insert_ads" width="200"/>
-<img src="imgs/insert_video.jpg" alt="insert_video" width="200"/>
-<br>
-<img src="imgs/floating_ads.jpg" alt="floating_ads" width="200"/>
-<img src="imgs/floating_video.jpg" alt="floating_video" width="200"/>
+
 
 ## Before you begin
 
